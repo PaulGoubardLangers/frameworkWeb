@@ -1,5 +1,6 @@
 <?php
 namespace controllers;
+use Ubiquity\attributes\items\router\Post;
 
 use Ubiquity\core\postinstall\Display;
 use Ubiquity\log\Logger;
@@ -11,17 +12,17 @@ use Ubiquity\themes\ThemesManager;
 class IndexController extends ControllerBase {
 
 	public function index() {
-		$defaultPage = Display::getDefaultPage();
-		$links = Display::getLinks();
-		$infos = Display::getPageInfos();
+    		$defaultPage = Display::getDefaultPage();
+    		$links = Display::getLinks();
+    		$infos = Display::getPageInfos();
 
-		$activeTheme = ThemesManager::getActiveTheme();
-		$themes = Display::getThemes();
-		if (\count($themes) > 0) {
-			$this->loadView('@activeTheme/main/vMenu.html', \compact('themes', 'activeTheme'));
-		}
-		$this->loadView($defaultPage, \compact('defaultPage', 'links', 'infos', 'activeTheme'));
-	}
+    		$activeTheme = ThemesManager::getActiveTheme();
+    		$themes = Display::getThemes();
+    		if (\count($themes) > 0) {
+    			$this->loadView('@activeTheme/main/vMenu.html', \compact('themes', 'activeTheme'));
+    		}
+    		$this->loadView($defaultPage, \compact('defaultPage', 'links', 'infos', 'activeTheme'));
+    	}
 
 	public function ct($theme) {
 		$themes = Display::getThemes();
@@ -33,4 +34,7 @@ class IndexController extends ControllerBase {
 			$this->forward(IndexController::class);
 		}
 	}
+
+
+
 }
